@@ -1,0 +1,39 @@
+<div class='main'>
+    <h3>Личная информация</h3>
+
+    <div class="center_div">
+        <p class="form_group_item">Фамилия:</p>
+        <p class="form_group_item">{{user.lastname}}</p>
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Имя:</p>
+        <p class="form_group_item">{{user.firstname}}</p>
+    </div>   
+
+    <div class="center_div">
+        <p class="form_group_item">Отчество:</p>
+        <p class="form_group_item">{{user.middlename}}</p>
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Номер группы:</p>
+        <p class="form_group_item">{{user.user_group}}</p>
+    </div>
+    
+    <hr>
+    <h3>Успеваемость</h3>
+    <div class="center_div">
+        <table border="1">
+            <tr>
+            <th>ID теста</th>  
+            <th>Название теста</th>
+            <th>Дата</th>
+            <th>Баллы</th>
+            </tr>
+            {{#each test}}
+            <tr><td>{{test_id}}</td><td>{{name}}</td><td>{{date_testing}}</td><td>{{marks}}</td></tr>
+            {{/each}}           
+            </table>
+    </div>
+</div>  

@@ -1,0 +1,45 @@
+CREATE DATABASE PRObatio
+	WITH 
+	OWNER = Kavkaeva
+	ENCODING = 'UTF8'
+	CONNECTION LIMIT = -1;
+
+CREATE TABLE users
+(
+	firstname character varying(255) NOT NULL,
+	middlename character varying(255),
+	lastname character varying(255) NOT NULL,
+	user_role character varying(255) NOT NULL,
+	phone character varying(255),
+	email character varying(255) NOT NULL UNIQUE,
+	login character varying(255) UNIQUE,
+	user_password character varying(255),
+	user_group character varying(255),
+	list_of_students character varying(255) ARRAY,
+	PRIMARY KEY ("login")
+);
+CREATE TABLE test
+(
+	id serial,
+	name character varying(255) NOT NULL,
+	author character varying(255),
+	time integer,
+	quantity_attempts integer,
+	access_for_group character varying(255) ARRAY,
+	access_for_students character varying(255) ARRAY,
+	questions_and_answer json,
+	PRIMARY KEY (id)
+);
+CREATE TABLE test_student
+(
+	id serial,
+	test_id integer NOT NULL REFERENCES test(id),
+	student_id character varying(255) NOT NULL REFERENCES users(login),
+	marks float,
+	date_testing date NOT NULL,
+	PRIMARY KEY ("id")
+);
+
+INSERT INTO users 
+VALUES ('Татьяна', 'Александровна', 'Кавкаева', 'Администратор', '89372701544',
+	'kavkaeva.tatyana@mail.ru', 'Кавкаева1', 'password12345');

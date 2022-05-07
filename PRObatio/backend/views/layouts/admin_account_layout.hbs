@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <header>
+    <div id="header">
+        <div>
+            <button class="btn btn_header"><a href="/exit">Выйти</a></button>
+        </div>
+    </div>
+    </header>
+    <div class="multicolumn">
+        <div class="general multicolumn_general">
+            <form class='main' action="/admin_account" method="post" id="editform" >
+                <h3 class="text-center">Мои данные</h3>
+
+                {{{body}}}
+
+                <div class="center_div">    
+                    <p class="btn edit_btn" method="post">Редактировать мои данные</p>
+                    <button class="btn save_btn" method="post">Сохранить изменения</button>
+                </div>
+            </form>          
+        
+        </div>
+
+        <div class="general">
+            <div class="main">
+                <h3>Действия</h3>
+                <div>
+                    <button class="btn"><a href="/creating">Добавить пользователя</a></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../js/general/edit_data.js"></script>
+</body>
+</html>

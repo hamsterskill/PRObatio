@@ -1,0 +1,11 @@
+    <select class="item relation_user " name="list_of_teachers" id="list_of_teachers" multiple>
+        {{#each list_of_teachers}}
+            <option value='{{login}}'>{{login}}</option>
+        {{/each}}  
+        </select>
+        
+    <select class="item relation_user" name="list_of_students" id="list_of_students" multiple>
+        {{#each list_of_students}}
+            <option value='{{login}}'>{{login}}</option>
+        {{/each}}     
+        </select>    

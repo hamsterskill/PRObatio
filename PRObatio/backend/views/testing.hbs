@@ -1,0 +1,58 @@
+<div class="general">
+    <form class="main" method="post">
+        <div>
+            <h3>{{test_name}}</h3>
+            <div id="{{timer_name}}"></div>
+            <h4>{{attempt}}</h4>
+            <h4>Автор: {{author}}</h4>
+        </div>
+        <hr>
+        <div>      
+            <div>
+                <ol id="list_of_questions">
+                    {{#each k}}
+                        <li class="question">
+                            <p name="question1"  class="item form_group_item_second">{{@key}}</p>
+                            <ol class="{{@key}}">
+                                {{#each this}}
+                                <li class="answer"><p name="add_answer">{{@key}}</p><input name="{{this}}" type="checkbox"></li>
+                                {{/each}} 
+                            </ol>
+                        </li>
+                    {{/each}}        
+                </ol>
+            </div>
+        </div>
+        <hr>
+        <div class="center_div">
+            <button type="submit" class="btn" id="save"><a>Завершить тест</a></button>
+        </div>
+    </form>
+</div>
+
+<script>
+    if (document.getElementById('timer')){          
+        let countDownTime = {{time}}*1000*60 + new Date().getTime();
+        let countFunc = setInterval(function(){
+            let currentTime = new Date().getTime();
+            let remainingTime = countDownTime - currentTime;
+
+            let hour = Math.floor((remainingTime%(1000*60*60*24))/(1000*60*60)) 
+            let minute = Math.floor((remainingTime%(1000*60*60))/(1000*60))
+            let second = Math.floor((remainingTime%(1000*60))/(1000))
+
+            document.getElementById('timer').innerHTML = "Оставшееся время: " + hour +"ч " + minute +"м " + second +"с "
+
+            if (remainingTime < 0) {
+                clearInterval(countFunc)
+                document.getElementById('timer').innerHTML = 'Время вышло'
+                // Создание события
+                var event = document.createEvent("MouseEvent");
+
+                // Назначить имя событию
+                event.initEvent('click', true, true);
+                save.dispatchEvent(event);
+            }
+        },1000)
+    }
+</script>

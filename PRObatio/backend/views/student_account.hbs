@@ -1,0 +1,79 @@
+<div class="center_div">
+    <p class="form_group_item">Фамилия:</p>
+    <p class="form_group_item_second">{{user.lastname}}</p>
+    <input class="item edit_item" type="text" name="new_lastname" placeholder="Фамилия">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Имя:</p>
+    <p class="form_group_item_second">{{user.firstname}}</p>
+    <input class="item edit_item" type="text"  name="new_firstname" placeholder="Имя">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Отчество:</p>
+    <p class="form_group_item_second">{{user.middlename}}</p>
+    <input class="item edit_item" type="text" name="new_middlename" placeholder="Отчетсво">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Номер группы:</p>
+    <p class="form_group_item_second">{{user.user_group}}</p>
+    <input class="item edit_item" type="text" name="new_user_group" placeholder="Номер группы">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Номер телефона:</p>
+    <p class="form_group_item_second">{{user.phone}}</p>
+    <input class="item edit_item" type="text" name="new_phone" placeholder="Номер телефона">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Email:</p>
+    <p class="form_group_item_second">{{user.email}}</p>
+    <input class="item edit_item" type="email" name="new_email" placeholder="Email">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Логин:</p>
+    <p class="form_group_item_second  form_group_item">{{user.login}}</p>
+    <input class="item " style="visibility: hidden;">
+</div>
+
+<div class="center_div">
+    <p class="form_group_item">Пароль:</p>
+    <input class="item edit_item" autocomplete="new-password" type="password" name="new_password" minlength="6" placeholder="Пароль">
+</div>
+
+<div class="center_div">    
+    <p class="btn edit_btn">Редактировать мои данные</p>
+    <button class="btn save_btn" method="post">Сохранить изменения</button>
+</div>
+
+<hr>
+<div class="center_div">
+    <p class="btn test_btn">Тестирование</p>
+</div>
+<div id="test" class="center_div">
+    <table border="1">
+        <tr>
+        <th>ID теста</th>  
+        <th>Название теста</th>
+        <th>Автор</th>
+        <th>Количество попыток</th>
+        <th></th>
+        </tr>
+        {{#each tests}}
+            <tr><td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{author}}</td>
+            <td>{{quantity_attempts}}</td>
+            <td><a href="/testing/{{id}}">Пройти тестирование</a></td></tr>
+        {{/each}} 
+       </table>
+</div>
+
+<hr>
+<div class="center_div">
+    <button class="btn"><a href="/student_progress/{{user.login}}">Успеваемость</a></button>
+</div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание аккаунта</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div>
+            <button class="btn btn_header"><a href="/personal_account">Личный кабинет</a></button>
+        </div>
+    </div>
+    <div class="general">
+        <form class="main" method="post" action="/creating">
+            <h3 class="text-center">Введите данные</h3>
+
+            <div class="center_div">
+                <p class="form_group_item">Фамилия:</p>
+                <input class="item" type="text" name='lastname' id="lastname" placeholder="Фамилия" required>
+            </div>
+
+            <div class="center_div">
+                <p class="form_group_item">Имя:</p>
+                <input class="item"  type="text" name="username" id="username" placeholder="Имя" required>
+            </div>
+            
+            <div class="center_div">
+                <p class="form_group_item">Отчество:</p>
+                <input class="item" type="text" id="middlename" name="middlename" placeholder="Отчество">
+            </div>
+
+            <div class="center_div">
+                <p class="form_group_item">Номер телефона:</p>
+                <input class="item" type="text" id="phone" name="phone" placeholder="Номер телефона">
+            </div>
+
+            <div class="center_div">
+                <p class="form_group_item">Email:</p>
+                <input class="item" type="email"  id="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="center_div">
+                <p class="form_group_item">Роль:</p>
+                <select class="item select_item" id="role" name="role">
+                    <option>Преподаватель</option>
+                    <option>Студент</option>
+                    <option>Администратор</option>
+                  </select>
+            </div>
+
+            <div class="if center_div">
+                <p class="form_group_item">Группа:</p>
+                <input class=" item" type="text" id="group" name="group" placeholder="Номер группы">
+            </div>
+            <div class="center_div" id="relation">
+                <p class="form_group_item" id="relation_name">Назначить Студентов</p>
+                {{{body}}}
+            </div>           
+            <div class="center_div">
+                <button class="btn" id="add_btn"><a>Добавить пользователя</a></button>
+            </div>           
+        </form>          
+    </div>
+    <script type="module" src="../../js/admin/creating.js"></script>
+</body>
+</html>

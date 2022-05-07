@@ -1,0 +1,26 @@
+<h3 class="text-center">Тест "{{name}}"</h3>
+<hr>
+<div class="center_div">
+        <table id="students" border="1">
+        <tr>
+        <th>Логин</th>  
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Группа</th>
+        <th>Дата</th>
+        <th>Баллы</th>
+        <th>Успеваемость</th>
+        </tr>
+        {{#each student}}
+        <tr><td>{{login}}</td>
+        <td>{{lastname}}</td>
+        <td>{{firstname}}</td>
+        <td>{{middlename}}</td>
+        <td>{{user_group}}</td>
+        <td>{{date_testing}}</td>
+        <td>{{marks}}</td>
+        <td><a href="/student_progress/{{login}}">Успеваемость</a></td></tr> 
+        {{/each}}
+</table>
+</div>

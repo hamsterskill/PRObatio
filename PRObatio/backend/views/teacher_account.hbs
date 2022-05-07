@@ -1,0 +1,93 @@
+<form method="post" id="editform">
+    <h3>Мои данные</h3>
+    
+    <div class="center_div">
+        <p class="form_group_item">Фамилия:</p>
+        <p class="form_group_item_second">{{user.lastname}}</p>
+        <input class="item edit_item" type="text" name="new_lastname" placeholder="Фамилия">
+    </div>
+    
+    <div class="center_div">
+        <p class="form_group_item">Имя:</p>
+        <p class="form_group_item_second">{{user.firstname}}</p>
+        <input class="item edit_item" type="text"  name="new_firstname" placeholder="Имя">
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Отчество:</p>
+        <p class="form_group_item_second">{{user.middlename}}</p>
+        <input class="item edit_item" type="text" name="new_middlename" placeholder="Отчетсво">
+    </div>
+
+
+    <div class="center_div">
+        <p class="form_group_item">Номер телефона:</p>
+        <p class="form_group_item_second">{{user.phone}}</p>
+        <input class="item edit_item" type="text" name="new_phone" placeholder="Номер телефона">
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Email:</p>
+        <p class="form_group_item_second">{{user.email}}</p>
+        <input class="item edit_item" type="email" name="new_email" placeholder="Email">
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Логин:</p>
+        <p class="form_group_item_second  form_group_item">{{user.login}}</p>
+        <input class="item " style="visibility: hidden;">
+    </div>
+
+    <div class="center_div">
+        <p class="form_group_item">Пароль:</p>
+        <input class="item edit_item" type="password" autocomplete="new-password" name="new_password" minlength="6" placeholder="Пароль">
+    </div>
+
+    <div class="center_div">    
+        <p class="btn edit_btn">Редактировать мои данные</p>
+        <button class="btn save_btn" method="post">Сохранить изменения</button>
+    </div>
+</form>
+
+<hr>
+
+<h3 class="text-center">Мои тесты</h3>
+<button class="btn"><a href="/create_test">Создать тест</a></button>
+<table border="1">
+    <tr>
+    <th>ID теста</th>  
+    <th>Название теста</th>
+    <th>Время</th>
+    <th>Количество попыток</th>
+    <th>Пройти</th>
+    <th>Успеваемость</th>
+    </tr>
+    {{#each tests}}
+            <tr><td>{{id}}</td><td>{{name}}</td><td>{{time}}</td>
+            <td>{{quantity_attempts}}</td>
+            <td><a href="/testing/{{id}}">Пройти тестирование</a></td>
+            <td><a href="/test_progress/{{id}}">Успеваемость</a></td></tr> 
+    {{/each}} 
+    
+    </table>
+
+<hr>
+
+<h3 class="text-center">Мои студенты</h3>
+<table id="students" border="1">
+        <tr>
+        <th>Логин</th>  
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Номер телефона</th>
+        <th>Email</th>
+        <th>Номер группы</th>
+        <th>Успеваемость</th>
+        </tr>
+        {{#each student}}
+            <tr><td>{{login}}</td><td>{{lastname}}</td><td>{{firstname}}</td>
+            <td>{{middlename}}</td><td>{{phone}}</td><td>{{email}}</td><td>{{user_group}}</td>
+            <td><a href="/student_progress/{{login}}">Успеваемость</a></td></tr>
+        {{/each}} 
+</table>

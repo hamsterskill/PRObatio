@@ -1,0 +1,35 @@
+<div>
+    <h4>Этап 1. Список возможных вопросов</h3>        
+    <div>
+        <ol id="list_of_questions">
+            <li name="question1" class="question">
+                <input name="question1" placeholder="Введите вопрос" class="item form_group_item_second">
+                <ol class="answers">
+                <p class="btn" name="add_answer">Добавить вариант ответа</p>    
+                <li class="answer"><input name="question1ans1" placeholder="Введите ответ" class="item form_group_item_second" type="text">Правильный ответ:<input name="question1ans1" type="checkbox" class="checkbox"></li>
+                
+            </ol>
+            </li>
+        </ol>
+    </div>
+    <p class="btn" id="add_question">Добавить вопрос</p>
+</div>
+<hr>
+<div class="settings">      
+    <h4>Этап 2. Настройка теста</h3>
+    <p>Название теста: <input class="item" name="test_name" placeholder="Название теста" required></p>
+    <p>Ограничение по времени: <input id="time" type="checkbox" value="off"></p>
+    <p id="timer" style="visibility:hidden">Установите таймер: <input name="hours" type="number" min="0">ч.<input name="min" type="number" min="0">мин.</p>
+    <p>Ограничение по количеству попыток: <input id="attempts" type="checkbox" value="off"></p>
+    <p id="quantity_attempts" style="visibility:hidden">Введите максимальное количество попыток:<input name="q_a" min="0" type="number"></p>
+    <p>Доступно группам<select class="item" name="list_of_groups" id="list_of_groups" multiple>
+        {{#each list_of_groups}}
+            <option value='{{user_group}}'>{{user_group}}</option>
+        {{/each}} 
+    </select></p>
+    <p>Доступно студентам<select class="item" name="list_of_students" id="list_of_students" multiple>
+        {{#each list_of_students}}
+            <option value='{{login}}'>{{login}}</option>
+        {{/each}} 
+    </select></p>
+</div>
