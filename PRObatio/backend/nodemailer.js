@@ -8,7 +8,7 @@ function create_transport() {
     secure: true,
     auth: {
       user: 'kavkaeva.tatyana@mail.ru',
-      pass: 'D7J9rW8GSq0XewYby8ar',
+      pass: 'p1C8bjRuAY50kqpeA7Zr',
     },
   })
 }

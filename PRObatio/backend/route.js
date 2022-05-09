@@ -22,6 +22,7 @@ const pool = new Pool({
 function gen_password(){
             var password = "";
             var length=Math.floor(Math.random()*(20-8+1))
+            while (length<6) {length=Math.floor(Math.random()*(20-8+1))}
             var symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             for (var i = 0; i < length; i++){
                 password += symbols.charAt(Math.floor(Math.random() * symbols.length));     
@@ -63,8 +64,7 @@ router.route('/')
             if(q_err) console.log(q_err)
             else {
                 const validPassword = bcrypt.compareSync(password,q_res.rows[0]['user_password']) //сравниваем пароли 
-            if (validPassword) {
-                // if (password==q_res.rows[0]['user_password']){
+            if (validPassword||(password==q_res.rows[0]['user_password'])) {
                 const token = generateAccessToken(login, q_res.rows[0]['user_role']) //создаем токен
 
             res.cookie('token',token,{  //сохраняем его в cookie
@@ -86,19 +86,22 @@ router.route('/reset')
     })
 
     .post(function(req, res) {
-        const email=req.body
+        const email=req.body.email
         password=gen_password()
-        hash_password=bcrypt.hashSync(password, 6)
-
+        hash_password=bcrypt.hashSync(password, 6)  
         pool.connect(function(error, client, done) {         
-            let sql=`SELECT login from users WHERE email=${email}`
-            let sql2 = `UPDATE users SET password=${hash_password} WHERE email=${email}`
-            client.query(sql).then((response)=>{client.query(sql2, [], function(err, resp) {
+            let sql=`SELECT login from users WHERE email='${email}'`
+            let sql2 = `UPDATE users SET user_password='${hash_password}' WHERE email='${email}'`
+            client.query(sql).then((response, error)=>{client.query(sql2, [], function(err, resp) {
                 done();
+                if (error){console.log(error)}
+                if (err) {console.log(err)}
                 if (response.rows.length!=0){
                     reset(email, response.rows[0]['login'], password) 
                 }
+                
                 res.redirect('/')
+                
                 })})      
     })
     })
@@ -252,7 +255,6 @@ router.route('/creating')
             if (list_of_teachers){
                for (let i=0;i<list_of_teachers.length;i++){
                 let teacher=list_of_teachers[i]
-                console.log(teacher)
                 pool.query(`update users set list_of_students=
                 array_append((select list_of_students from users where login='${teacher}'),
                 (select '${lastname}' || (SELECT count(*) from users where login LIKE '${lastname}%')+1)::varchar(255))
@@ -543,7 +545,7 @@ router.route('/student_account')
 
     //сохранение изменений
     .post(function(req, res){
-        var {new_lastname, new_firstname,new_middlename, new_phone, new_email, new_password}=req.body
+        var {new_lastname, new_firstname,new_middlename, new_phone, new_email, new_password, new_user_group}=req.body
         const payload = jwt.verify(req.cookies.token,'SECRET_KEY')
         let fields=[]
         if (new_lastname){
